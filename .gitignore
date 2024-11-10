@@ -8,3 +8,4 @@ __pycache__/
 *.pyc
 inverted_index.json
 vocabulary.csv
+ranked_search_inverted_index.json

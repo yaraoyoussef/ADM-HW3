@@ -6,7 +6,8 @@ Search engine module
 First we are going to create a conjunctive search engine
 Goal is to return restaurnants where query terms appear in the description
 '''
-
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import CountVectorizer
 import pandas as pd
 import json
 
@@ -57,6 +58,29 @@ def conjunctive_query(query):
     intersection_set = set.intersection(*to_intersect)
 
     return intersection_set
+
+def inverted_tfidf(df_restaurants):
+
+    inverted_index = {}
+
+    tfidf_vectorizer = TfidfVectorizer(stop_words='english')
+    tfidf_vector = tfidf_vectorizer.fit_transform(df_restaurants['cleaned_desc'])
+
+    tfidf_df = pd.DataFrame(tfidf_vector.toarray(), index=df_restaurants['restaurantName'], columns=tfidf_vectorizer.get_feature_names_out())
+
+    tfidf_df = tfidf_df.stack().reset_index()
+    tfidf_df.columns = ['restaurantName', 'term', 'tfidf_value']
+
+    for index, row in tfidf_df.iterrows():
+        if row['tfidf_value'] > 0:
+            if row['term'] in inverted_index.keys():
+                inverted_index[row['term']].append((row['restaurantName'], row['tfidf_value']))
+            else:
+                inverted_index[row['term']] = [(row['restaurantName'], row['tfidf_value'])]
+
+
+    with open('ranked_search_inverted_index.json', 'w') as output:
+        json.dump(inverted_index, output, indent=4, sort_keys=False)
 
     '''
         if __name__ == '__main__':
