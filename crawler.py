@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 from bs4 import BeautifulSoup
 
+# Function to find the links of all the pages of the restaurants and store them in a file
 def link_finder(URL):
     # Define headers to make the request look like it's coming from a regular browser.
     headers = {
@@ -19,12 +20,13 @@ def link_finder(URL):
         # get url of each page
         url = URL + f'page/{page}'
         response = requests.get(url, headers=headers)
+        # store content in variable
         if response.status_code == 200:
             html_content = response.text
         else:
             print("Error during download of current page:", response.status_code)
 
-        # Pase the content of each page
+        # Parse the content of each page
         soup = BeautifulSoup(html_content, 'html.parser')
 
         # Find all the links in the page 
@@ -51,6 +53,8 @@ def link_finder(URL):
         for url in rest_urls:
             file.write(url + "\n")
 
+# Function to download the html content of each restaurant in an html file that is stored in the corresponding
+# page folder
 def webpage_downloader():
     # Iterate through links of restaurants
     with open("restaurant_urls.txt", "r") as file:
@@ -103,7 +107,9 @@ def webpage_downloader():
 
     print("Download completed successfully")
 
+# Main function to call 
 def begin():
+    # Base link for website
     FIRST_URL = "https://guide.michelin.com/en/it/restaurants/"
 
     link_finder(FIRST_URL)
