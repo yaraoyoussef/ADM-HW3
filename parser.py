@@ -9,7 +9,7 @@ import re
 def extract_restaurant_info(html_content):
     soup = BeautifulSoup(html_content, 'html.parser')
     
-    # Estrarre il nome del ristorante
+    # Extract the name of the restaurant
     restaurant_name = soup.find("h1", class_="data-sheet__title").get_text(strip=True) if soup.find("h1", class_="data-sheet__title") else ''
 
     # Finding Address and Pricing
@@ -44,7 +44,7 @@ def extract_restaurant_info(html_content):
     services_column = soup.find('div', class_='col col-12 col-lg-6')
     facilities_services = [item.get_text(strip=True) for item in services_column.find_all('li') ] if services_column else []
 
-    #CreditCards
+    # CreditCards
 
     creditCards_column = soup.find('div',class_='list--card')
     if creditCards_column:
@@ -67,7 +67,7 @@ def extract_restaurant_info(html_content):
 
 
 
-
+    # Storing all the infos in a dict, in order to creat the Dataframe using it
     restaurant_info = {
         "restaurantName": restaurant_name,
         "address": address,
