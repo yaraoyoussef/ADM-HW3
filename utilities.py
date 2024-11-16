@@ -61,3 +61,20 @@ def find_restaurants(query, df):
 
 
     return found_rest
+
+def find_ranked_restaurants(query, k, df_restaurants):
+    #print('Enter your query:')
+    #k = 5
+    ranked_result = engine.process_query(clean_desc(query), df_restaurants)
+    df_restaurants['similarity'] = 0
+    ranked_df = []
+    ranked_df = pd.DataFrame(ranked_df)
+    for restaurant in ranked_result[:k]:
+        filtered_df = df_restaurants.loc[df_restaurants['restaurantName'] == restaurant[0]]
+        filtered_df['similarity'] = restaurant[1]
+        ranked_df = pd.concat([ranked_df, filtered_df])
+
+    ranked_df = ranked_df.filter(items=['restaurantName', 'address', 'description', 'website','similarity'])
+
+    pd.set_option('display.max_colwidth', None)
+    return ranked_df
