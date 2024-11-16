@@ -13,7 +13,7 @@ import string
 from nltk.stem import PorterStemmer
 import pandas as pd
 
-import engine
+import MyFunctions.engine as engine
 
 # Function to remove stopwords, punctuation and apply stemming on text  
 def clean_desc(desc):
@@ -63,8 +63,6 @@ def find_restaurants(query, df):
     return found_rest
 
 def find_ranked_restaurants(query, k, df_restaurants):
-    #print('Enter your query:')
-    #k = 5
     ranked_result = engine.process_query(clean_desc(query), df_restaurants)
     df_restaurants['similarity'] = 0
     ranked_df = []
