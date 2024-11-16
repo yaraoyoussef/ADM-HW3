@@ -11,6 +11,9 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import string
 from nltk.stem import PorterStemmer
+import pandas as pd
+
+import engine
 
 # Function to remove stopwords, punctuation and apply stemming on text  
 def clean_desc(desc):
@@ -38,3 +41,23 @@ def clean_desc(desc):
     cleaned_text = ' '.join(remaining) 
     remaining = re.sub(r'\s+', ' ', cleaned_text).strip()
     return cleaned_text
+
+def find_restaurants(query, df):
+    query = clean_desc(query)
+
+    intersection_set = engine.conjunctive_query(query)
+
+    found_rest = []
+
+    found_rest = pd.DataFrame(found_rest)
+
+    for restaurant in intersection_set:
+        filtered_df = df.query("restaurantName == @restaurant")
+        found_rest = pd.concat([found_rest, filtered_df])
+
+    found_rest.reset_index(drop=True, inplace=True)
+    found_rest = found_rest.filter(items=['restaurantName', 'address', 'description', 'website'])
+    found_rest = found_rest.rename(columns={'restaurantName':'Restaurant Name', 'address':'Address', 'description': 'Description', 'website':'Website'})
+
+
+    return found_rest

@@ -99,7 +99,6 @@ def inverted_tfidf(df_restaurants):
 
 def process_query(query, df_restaurants):
 
-    print('Reloaded')
     with open('ranked_search_inverted_index.json', 'r') as infile:
         words_dict = json.load(infile)
 
