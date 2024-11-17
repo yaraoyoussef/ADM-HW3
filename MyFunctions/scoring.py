@@ -71,7 +71,7 @@ def rank_restaurants(user_preferences, top_k, df_restaurants):
 
     # Add scores to the original DataFrame
     df_without_last_column['score'] = scores
-    df_without_last_column = df_without_last_column.loc[ranked_indices].reset_index(drop=True)
+    #df_without_last_column = df_without_last_column.loc[ranked_indices].reset_index(drop=True)
 
 
     # Ensure the 'score' column reflects the scores in the ranked order
