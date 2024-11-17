@@ -6,3 +6,9 @@
 
 __pycache__/
 *.pyc
+city_inverted_index.json
+city_vocabulary.csv
+cuisineType_inverted_index.json
+cuisineType_vocabulary.csv
+restaurantName_inverted_index.json
+restaurantName_vocabulary.csv
