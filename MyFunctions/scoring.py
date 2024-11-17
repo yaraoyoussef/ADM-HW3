@@ -48,13 +48,15 @@ def rank_restaurants(user_preferences, top_k, df_restaurants):
 
     ### Take relevant documents based on normal search engine (of point 2.1)
     restaurants_df = utilities.find_restaurants(user_preferences['query'], df_restaurants)
+    # Add the cleaned description column to the dataframe
+    restaurants_df['cleaned_desc'] = restaurants_df['description'].apply(utilities.clean_desc)
     # Rank the found restaurants based on their similarity score to the query
     restaurants_df = utilities.find_ranked_restaurants(user_preferences['query'], top_k, restaurants_df)
     for index, restaurant in restaurants_df.iterrows():
         rest_name = restaurant['restaurantName']
         cos_sim = restaurant['similarity']
         # Calculate score
-        score = calc_score(rest_name, cos_sim, user_preferences)
+        score = calc_score(rest_name, cos_sim, user_preferences, df_restaurants)
         scores.append(score)
         heapq.heappush(heap, (-score, index))
         if len(heap)> top_k:

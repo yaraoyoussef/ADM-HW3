@@ -42,6 +42,8 @@ def clean_desc(desc):
     remaining = re.sub(r'\s+', ' ', cleaned_text).strip()
     return cleaned_text
 
+# Function to search for restaurants using the conjuctive query of 2.1
+# and returns a dataframe with the restaurants
 def find_restaurants(query, df):
     query = clean_desc(query)
 
@@ -57,11 +59,13 @@ def find_restaurants(query, df):
 
     found_rest.reset_index(drop=True, inplace=True)
     found_rest = found_rest.filter(items=['restaurantName', 'address', 'description', 'website'])
-    found_rest = found_rest.rename(columns={'restaurantName':'Restaurant Name', 'address':'Address', 'description': 'Description', 'website':'Website'})
+    #found_rest = found_rest.rename(columns={'restaurantName':'Restaurant Name', 'address':'Address', 'description': 'Description', 'website':'Website'})
 
 
     return found_rest
 
+# Function to search for restaurants using the process query of 2.2
+# and returns the ranked dataframe with the restaurants and the similarity score
 def find_ranked_restaurants(query, k, df_restaurants):
     ranked_result = engine.process_query(clean_desc(query), df_restaurants)
     df_restaurants['similarity'] = 0
