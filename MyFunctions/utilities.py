@@ -57,7 +57,7 @@ def find_restaurants(query, df):
         filtered_df = df.query("restaurantName == @restaurant")
         found_rest = pd.concat([found_rest, filtered_df])
 
-    #found_rest.reset_index(drop=True, inplace=True)
+    found_rest.reset_index(drop=True, inplace=True)
     found_rest = found_rest.filter(items=['restaurantName', 'address', 'description', 'website'])
     #found_rest = found_rest.rename(columns={'restaurantName':'Restaurant Name', 'address':'Address', 'description': 'Description', 'website':'Website'})
 
