@@ -7,7 +7,6 @@ First we are going to create a conjunctive search engine
 Goal is to return restaurnants where query terms appear in the description
 '''
 import math
-from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 import pandas as pd
 import json
@@ -107,7 +106,7 @@ def inverted_tfidf(df_restaurants):
                 term_frequency[term] += 1 # If the word is already present as a key, the fraction represting the frequency is added
             else:
                 term_frequency[term] = 1 # Key is initialized with the corresponding word frequency
-        for frequency in term_frequency.values(): frequency / total_words
+        for frequency in term_frequency.values(): frequency = frequency / total_words
 
         restaurant_number = len(df_restaurants) # Total number of docs in IDF formula
         for term, frequency in term_frequency.items():
