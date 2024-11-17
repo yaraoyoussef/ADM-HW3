@@ -59,7 +59,7 @@ This project was developed as a solution to the third homework of the ADM course
 
 ## Datasets
 
-- **'df_restaurants.csv'** 
+- **`df_restaurants.csv`** 
   A dataset created wih the basic information extracted for each restaurant.
 
 - **`df_restaurants_coordinates.csv`**  
@@ -67,6 +67,14 @@ This project was developed as a solution to the third homework of the ADM course
 
 - **`gi_comuni.xlsx`**  
   A dataset used to retrieve the coordinates of various Italian comunes. Downloaded from https://www.gardainformatica.it/database-comuni-italiani, that gets the informations from reliable sources, such as ISTAT.
+
+
+---
+
+## Jupyter notebook viewer 
+
+In case of difficulties to view the rendered outputs and graphs on the main.ipynb file, we provide this link:
+https://nbviewer.org/github/yaraoyoussef/ADM-HW3/tree/main/ to be able to view everything.
 
 ---
 
