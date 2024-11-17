@@ -57,10 +57,10 @@ This project was developed as a solution to the third homework of the ADM course
 
 ---
 
-# Datasets
+## Datasets
 
 - **'df_restaurants'** 
-| A dataset created wih the basic information extracted for each restaurant
+  A dataset created wih the basic information extracted for each restaurant.
 
 - **`df_restaurants_coordinates.csv`**  
   A dataset containing all restaurants, their information, and their respective coordinates.
