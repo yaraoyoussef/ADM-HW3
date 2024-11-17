@@ -21,12 +21,6 @@ This project was developed as a solution to the third homework of the ADM course
 
 ### **2. Key Files**
 
-- **`df_restaurants_coordinates.csv`**  
-  A dataset containing all restaurants, their information, and their respective coordinates.
-
-- **`gi_comuni.xlsx`**  
-  A dataset used to retrieve the coordinates of various Italian comunes.
-
 - **`inverted_index.json`**  
   A file that maps each cleaned word from restaurant descriptions to its corresponding `term_id` and a list of restaurants where the word appears.
 
@@ -60,6 +54,19 @@ This project was developed as a solution to the third homework of the ADM course
 
 3. **Reproduce results**  
    - Open and run the `main.ipynb` notebook to follow the workflow and reproduce results.
+
+---
+
+# Datasets
+
+- **'df_restaurants'** 
+| A dataset created wih the basic information extracted for each restaurant
+
+- **`df_restaurants_coordinates.csv`**  
+  A dataset containing all restaurants, their information, and their respective coordinates.
+
+- **`gi_comuni.xlsx`**  
+  A dataset used to retrieve the coordinates of various Italian comunes. Downloaded from https://www.gardainformatica.it/database-comuni-italiani, that gets the informations from reliable sources, such as ISTAT.
 
 ---
 
